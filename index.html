@@ -6,14 +6,14 @@
     <!-- 加载bootstrap的css文件 -->
     <link rel="stylesheet" href="css/bootstrap.css">
     <link rel="stylesheet" href="my.css">
-    <script language="javascript" type="text/javascript">
+    <!-- <script language="javascript" type="text/javascript">
     //点击播放音频
         function autoPlay() {
             var myAuto = document.getElementById('myaudio');
             myAuto.play();    
         }
         
-    </script>
+    </script> -->
     <title>日常</title>
 </head>
 <body>
@@ -26,28 +26,31 @@
             
         </div>
     </div>
-    
+    <button id="addep" onclick = "addepisode()">添加集数</button>
     <hr>
     <!--.nav-tabs类创建导航菜单-->
     <ul class="nav nav-tabs" id="myTab" role="tablist">
       <li class="nav-item" role="presentation">
-        <a class="nav-link active" id="homea-tab" data-toggle="tab" href="#homea" role="tab" aria-controls="homea" aria-selected="true">第一集</a>
+        <a class="nav-link active" id="home-tab" data-toggle="tab" href="#home" role="tab" aria-controls="home" aria-selected="true">第一集</a>
       </li>
       <li class="nav-item" role="presentation">
-        <a class="nav-link" id="profilea-tab" data-toggle="tab" href="#profilea" role="tab" aria-controls="profilea aria-selected="false">第二集</a>
+        <a class="nav-link" id="profile-tab" data-toggle="tab" href="#profile" role="tab" aria-controls="profile aria-selected="false">第二集</a>
       </li>
       <li class="nav-item" role="presentation">
-        <a class="nav-link" id="contacta-tab" data-toggle="tab" href="#contacta" role="tab" aria-controls="contacta" aria-selected="false">第三集</a>
+        <a class="nav-link" id="contact-tab" data-toggle="tab" href="#contact" role="tab" aria-controls="contact" aria-selected="false">第三集</a>
       </li>
     </ul>
+
+    <!--tab里面的内容-->
     <div class="tab-content" id="myTabContent">
-      <div class="tab-pane fade show active" id="homea" role="tabpanel" aria-labelledby="homea-tab">
+      <div class="tab-pane fade show active" id="home" role="tabpanel" aria-labelledby="home-tab">
         
         <!--一行内容-->
         <div class = "row shangbianju">
           <div class="col-md-10 d-flex">
-      
-            <button type="button" class="btn btn-outline-secondary " 
+            <!--用collapse创建折叠-->
+            <audio src="audio/001.wav" id="myaudio" controls="controls" hidden="true"></audio>
+            <button onclick="autoPlay()" type="button" class="btn btn-outline-secondary " 
                     data-toggle="collapse" href="#collapseExample" role="button" aria-expanded="false" aria-controls="collapseExample">>どうしたの　ゆうこ</button>
       
           <div class="collapse" id="collapseExample">
@@ -60,8 +63,27 @@
           <div class="col-md-1"></div>
         </div>
         </div>
+
+        <!--两行内容-->
+        <div class = "row shangbianju">
+          <div class="col-md-10 d-flex">
+      
+            <button type="button" class="btn btn-outline-secondary " 
+                    data-toggle="collapse" href="#collapseExample2" role="button" aria-expanded="false" aria-controls="collapseExample2">>どうしたの　ゆうこ</button>
+      
+          <div class="collapse" id="collapseExample2">
+              <div class="card card-body">
+                怎么了 佑子
+              </div>
+      
+          </div>
+          <div class="col-md-1"></div>
+          <div class="col-md-1"></div>
+        </div>
+        </div>
+
       </div>
-      <div class="tab-pane fade" id="profilea" role="tabpanel" aria-labelledby="profilea-tab">
+      <div class="tab-pane fade" id="profile" role="tabpanel" aria-labelledby="profile-tab">
 
         <!--一行内容-->
         <div class = "row shangbianju">
@@ -82,7 +104,7 @@
         </div>
 
       </div>
-      <div class="tab-pane fade" id="contacta" role="tabpanel" aria-labelledby="contacta-tab">1111111111</div>
+      <div class="tab-pane fade" id="contact" role="tabpanel" aria-labelledby="contact-tab">1111111111</div>
     </div>
    
 </div>
@@ -90,5 +112,7 @@
 <!-- 加载jQuery文件 -->
 <script src="js/jquery-3.3.1.js"></script>
 <script src="js/bootstrap.js"></script>
+<script src="Bmob-2.2.5.min.js"></script>
+<script src="index.js"></script>
 </body>
 </html>
