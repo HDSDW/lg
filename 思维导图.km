@@ -23,10 +23,11 @@
                         "data": {
                             "id": "cdjechdcsh40",
                             "created": 1628960618726,
-                            "text": "index.js实现点击按钮向数据库添加一列数据",
+                            "text": "onclick = \"addepisode()\"\n 实现点击按钮向数据库添加一列数据",
                             "expandState": "expand",
                             "progress": 9,
-                            "priority": 1
+                            "priority": 1,
+                            "layout": null
                         },
                         "children": []
                     },
@@ -34,9 +35,9 @@
                         "data": {
                             "id": "cdjecghz7bc0",
                             "created": 1628960616828,
-                            "text": "设置数据表的各项内容，完善按钮点击",
+                            "text": "设置数据表的各项内容，完善按钮点击\n设置默认li行数据",
                             "priority": 2,
-                            "progress": 1
+                            "progress": 2
                         },
                         "children": []
                     },
@@ -81,6 +82,6 @@
         ]
     },
     "template": "filetree",
-    "theme": "fresh-blue",
+    "theme": "classic",
     "version": "1.4.43"
 }

@@ -2,13 +2,21 @@ Bmob.initialize("0e24ccb1d5f8ad62", "123456");
 
 window.onload = function () {
 
+	const query = Bmob.Query('default');
+	query.get('0975ea3fc5').then(res => {
+		console.log(res.code)
+		document.write(res.code)
+		}).catch(err => {
+			console.log(err)
+				})
+
 
 }
 
 function addepisode () {
-
+	点击按钮向数据库添加一列数据
 	const query = Bmob.Query('ep')
-	query.set("text","id")
+	query.set("code","tag_name")
 	query.set("zzz","ssssssss")
 
 	query.save().then(res => {
@@ -16,6 +24,31 @@ function addepisode () {
 			}).catch(err => {
   		console.log(err)
 	})
+
+	//获取一行记录
+
+
+	// const query = Bmob.Query('ep');
+	// query.get('Ip0h666n').then(res => {
+	// 	console.log(res.code)
+	// 	getul = document.getElementsByTagName("ul")
+	// 	getli = document.getElementsByTagName("li")
+
+	// 	console.log(getul.length);
+	// 	console.log(getli.length);
+
+	// 	defineul = getul[0]
+	// 	console.log(defineul.innerHTML);
+	// 	defineul.innerHTML = defineul.innerHTML + res.code
+
+		
+
+		
+	// 	}).catch(err => {
+	// 		console.log(err)
+	// 			})
+	
+				
 
 
 }
