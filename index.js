@@ -1,29 +1,39 @@
 Bmob.initialize("0e24ccb1d5f8ad62", "123456");
 
 window.onload = function () {
+	//获取默认表
 
-	const query = Bmob.Query('default');
-	query.get('0975ea3fc5').then(res => {
-		console.log(res.code)
-		document.write(res.code)
-		}).catch(err => {
-			console.log(err)
-				})
+	// const query = Bmob.Query('default');
+	// query.get('0975ea3fc5').then(res => {
+	// 	console.log(res.code)
+	// 	document.write(res.code)
+	// 	}).catch(err => {
+	// 		console.log(err)
+	// 			})
 
 
 }
 
 function addepisode () {
-	点击按钮向数据库添加一列数据
-	const query = Bmob.Query('ep')
-	query.set("code","tag_name")
-	query.set("zzz","ssssssss")
 
-	query.save().then(res => {
-  		console.log(res)
-			}).catch(err => {
-  		console.log(err)
+	const query = Bmob.Query("ep");//获取ep表，通过.length获取最后一集的集数
+	query.find().then(res => {
+		lastep = res.length
+		console.log(lastep)
+
+		
 	})
+
+	// 点击按钮向数据库添加一列数据
+	// const query = Bmob.Query('ep')
+	// query.set("code","tag_name")
+	// query.set("zzz","ssssssss")
+
+	// query.save().then(res => {
+  	// 	console.log(res)
+	// 		}).catch(err => {
+  	// 	console.log(err)
+	// })
 
 	//获取一行记录
 
