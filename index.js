@@ -12,14 +12,34 @@ window.onload = function () {
 	// 			})
 
 
+	
+        // <a class="nav-link active" id="eptab1" data-toggle="tab" href="#ep1" role="tab" aria-controls="ep1" aria-selected="true">第一集</a>
+    
 }
 
 function addepisode () {
 
-	const query = Bmob.Query("ep");//获取ep表，通过.length获取最后一集的集数
+	
+		
+	
+	
+
+	const query = Bmob.Query("ep");//获取ep表，
 	query.find().then(res => {
-		lastep = res.length
-		console.log(lastep)
+		lastep = res.length+1//通过.length获取最后一集的集数epnumber
+		qq = res[0]
+		console.log(qq)
+		var mx1 = "<a class=\"nav-link active\" id=\"eptab"
+		var mx2 = "\" "
+		var mx3 = "data-toggle=\"tab\" href=\"#ep"
+		var mx4 = "role=\"tab\" "
+		var mx5 ="aria-controls=\"ep"
+		var mx6 = "aria-selected=\"true\">第"
+		var mx7 = "集</a>"
+		console.log(mx1+lastep+mx2+mx3+lastep+mx2+mx4+mx5+lastep+mx2+mx6+lastep+mx7)
+
+
+
 
 		
 	})
