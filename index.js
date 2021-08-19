@@ -7,20 +7,24 @@ window.onload = function () {//进入网页即加载表中数据
 		var epx = "";//记得加上这个否则会出现undefined
 		var i;
 		for (i = 0; i < res.length; i++) {
-			var epx = epx+res[i].code;
+			epx = epx+res[i].code;
 		}
 		getul = document.getElementsByTagName("ul")//定位<ul>元素位置
 		defineul = getul[0]
 		defineul.innerHTML = defineul.innerHTML+epx//向<ul>中添加表中数据
 
-		const query = Bmob.Query("ep_content")
+		const query = Bmob.Query("ep_content3")
 		query.find().then(res => {
-		
-			// console.log(res[0].code);
-			epp = res[0].code
-			getcontent = document.getElementById("myTabContent")
-			// console.log(getcontent)
-			getcontent.innerHTML = getcontent.innerHTML+epp
+			console.log(res);
+			
+			var epp=""
+			var j=""
+			for (j=0; j<res.length; j++) {
+				epp=epp+res[j].code
+			}
+			getcontent = document.getElementsByClassName('tab-content')
+			definetabcon = getcontent[0]
+			definetabcon.innerHTML = definetabcon.innerHTML+epp
 			
 		})
 	})
@@ -57,12 +61,40 @@ function addepisode () {//向表中添加一行数据<li>
 		var mx8 = "</li>"
 		var epmodel = mx0+mx1+lastep+mx2+mx3+lastep+mx2+mx4+mx5+lastep+mx2+mx6+lastepch+mx7+mx8//ep模板
 		// console.log(epmodel);
+
+	// 	<div class="tab-pane fade show active" id="ep1" role="tabpanel" aria-labelledby="eptab1">
+    //     <!--一行内容-->
+    //     <div class = "row shangbianju">
+    //       <div class="col-md-12 d-flex">
+    //         <!--用collapse创建折叠-->
+    //         <audio src="audio/1.wav" id="myaudio" controls="controls" hidden="true"></audio>
+    //         <button onclick="autoPlay()" type="button" class="btn btn-outline-secondary " 
+    //                 data-toggle="collapse" href="#collapseExample" role="button" aria-expanded="false" aria-controls="collapseExample">どうしたの　ゆうこ</button>
+    //         <div class="collapse" id="collapseExample">
+    //             <div class="card card-body">
+    //               怎么了 佑子
+    //             </div>
+    //         </div>
+    //     </div>
+    //     </div>
+
+    //     <br>
+    //     <fieldset>
+    //       <legend font-size="10em">添加内容</legend>
+          
+    //       <textarea name="origin" id="origin">原文</textarea>
+    //       <textarea name="translate" id="translate">翻译/注释</textarea>
+    //       <br>
+    //       <buttontype="button" class="btn btn-outline-secondary">添加</button>
+    //     </fieldset>
+    //   </div>
+
 		var md1 = "<div class=\"tab-pane fade show active\" id=\"ep"
 		var md2 = "\" role=\"tabpanel\" aria-labelledby=\"eptab"
 		var md3 = "\"><div class = \"row shangbianju\"><div class=\"col-md-12 d-flex\"><audio src=\"audio/"
 		var md4 = ".wav\" id=\"myaudio\" controls=\"controls\" hidden=\"true\"></audio><button onclick=\"autoPlay()\" type=\"button\" class=\"btn btn-outline-secondary \" data-toggle=\"collapse\" href=\"#collapse"
 		var md5 = "\" role=\"button\" aria-expanded=\"false\" aria-controls=\"collapse"
-		var md6 = "\></button><div class=\"collapse\" id=\"collapse"
+		var md6 = "\"></button><div class=\"collapse\" id=\"collapse"
 		var md7 = "\"><div class=\"card card-body\"> </div></div></div></div><br><fieldset><legend>添加内容</legend><textarea id=\"origin"
 		var md8 = "\">原文</textarea> <textarea id=\"translate"
 		var md9 = "\">翻译/注释</textarea><br><button type=\"button\" class=\"btn btn-outline-secondary\" id=\"btn"
@@ -79,18 +111,16 @@ function addepisode () {//向表中添加一行数据<li>
 			// console.log(res)
 			defineul.innerHTML = defineul.innerHTML + epmodel
 				// 向数据库ep_content添加一列数据
-				const query = Bmob.Query('ep_content')
+				const query = Bmob.Query('ep_content2')
 				query.set("code",contentmodel)
 				query.save().then(res => {
-					
+					getcontent = document.getElementsByClassName('tab-content')
+					definetabcon = getcontent[0]
+					definetabcon.innerHTML = definetabcon.innerHTML+contentmodel
 						}).catch(err => {
 					console.log(err)
 				})
-				getcontent = document.getElementById("myTabContent")
-					// console.log(contentmodel)
-					console.log(getcontent)
-					getcontent.innerHTML = getcontent.innerHTML+contentmodel
-		
+					
 		}).catch(err => {
 			console.log(err)
 		})

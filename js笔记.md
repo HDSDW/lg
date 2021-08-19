@@ -2,10 +2,12 @@
 1 document.getElementsByTagName("tagname")[数字（表示该元素的第几个段落）] 方法可返回带有指定标签名的对象的集合HTMLCollection，再通过innerHTML获取元素中的内容，记得加[],不然只会获取到一个集合
 详解 https://developer.mozilla.org/zh-CN/docs/Web/API/Document/getElementsByTagName
 
-2 document.getElementById("id") 方法可返回对拥有指定 ID 的第一个对象的引用。
+2 document.getElementById("id") 方法可返回对拥有指定 ID 的第一个对象的引用。注意 只能改变该元素里的第一个对象
 记得用加法防止其他内容被覆盖 inner.innerHTML=inner.innerHTML + html
 记得请求数据的方法别写重了
-
+3 Element.getElementsByClassName() 方法返回一个即时更新的（live） HTMLCollection，包含了所有拥有指定 class 的子元素。
+  Element表示文档中的元素，不是固定的
+https://developer.mozilla.org/zh-CN/docs/Web/API/Element/getElementsByClassName
 
 
 
