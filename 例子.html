@@ -2,22 +2,71 @@
 <html lang="zh-CN">
 <head></head>
 <body>
+      <!--ep1-->
+      <div class="tab-pane fade show active" id="ep1" role="tabpanel" aria-labelledby="eptab1">
+        <!--一行内容-->
+        <div class = "row shangbianju">
+          <div class="col-md-12 d-flex">
+            <!--用collapse创建折叠-->
+            <audio src="audio/001.wav" id="myaudio" controls="controls" hidden="true"></audio>
+            <button onclick="autoPlay()" type="button" class="btn btn-outline-secondary " 
+                    data-toggle="collapse" href="#collapseExample" role="button" aria-expanded="false" aria-controls="collapseExample">どうしたの　ゆうこ</button>
+            <div class="collapse" id="collapseExample">
+                <div class="card card-body">
+                  怎么了 佑子
+                </div>
+            </div>
+        </div>
+        </div>
 
-  <p>ssssssssssssssssss</p>
-  
+        <br>
+        <fieldset>
+          <legend font-size="10em">添加内容</legend>
+          
+          <textarea name="origin" id="origin">原文</textarea>
+          <textarea name="translate" id="translate">翻译/注释</textarea>
+          <br>
+          <buttontype="button" class="btn btn-outline-secondary">添加</button>
+        </fieldset>
+      </div>
 
-  <li class="nav-item" role="presentation">
-        <a class="nav-link" id="eptab + ep_number + " data-toggle="tab" href="#ep + ep_number + " role="tab" aria-controls="ep + ep_number + " aria-selected="false">第四集</a>
-  </li>
 
+      <div class="tab-pane fade show active" id="ep2" role="tabpanel" aria-labelledby="eptab2">
+        <div class = "row shangbianju">
+          <div class="col-md-12 d-flex">
+            <audio src="audio/2.wav" id="myaudio" controls="controls" hidden="true"></audio>
+            <button onclick="autoPlay()" type="button" class="btn btn-outline-secondary " data-toggle="collapse" href="#collapse2" role="button" aria-expanded="false" aria-controls="collapse></button>
+            <div class="collapse" id="collapse">
+              <div class="card card-body"> 
 
-
-  <script>
-    var c = document.getElementsByTagName("p");
-    
-    var b = c[0]
-    console.log(b.innerHTML);
-
-  </script>
+              </div>
+              </div>
+              </div>
+              </div>
+              <br>
+              <fieldset>
+              <legend>添加内容</legend>
+              <textarea id="origin">原文</textarea> 
+              <textarea id="translate">翻译/注释</textarea><br><button type="button" class="btn btn-outline-secondary" id="btn">添加</button></fieldset>
+            </div>
 </body>
 </html>
+const query = Bmob.Query("ep_content")//添加content
+		query.find().then(res => {
+			connum = res.length+1
+			var md1 = "<div class=\"tab-pane fade show active\" id=\"ep"
+			var md2 = "\" role=\"tabpanel\" aria-labelledby=\"eptab"
+			var md3 = "\"><div class = \"row shangbianju\"><div class=\"col-md-12 d-flex\"><audio src=\"audio/"
+			var md4 = ".wav\" id=\"myaudio\" controls=\"controls\" hidden=\"true\"></audio><button onclick=\"autoPlay()\" type=\"button\" class=\"btn btn-outline-secondary \" data-toggle=\"collapse\" href=\"#collapse"
+			var md5 = "\" role=\"button\" aria-expanded=\"false\" aria-controls=\"collapse"
+			var md6 = "\></button><div class=\"collapse\" id=\"collapse"
+			var md7 = "\"><div class=\"card card-body\"> </div></div></div></div><br><fieldset><legend>添加内容</legend><textarea id=\"origin"
+			var md8 = "\">原文</textarea> <textarea id=\"translate"
+			var md9 = "\">翻译/注释</textarea><br><button type=\"button\" class=\"btn btn-outline-secondary\" id=\"btn"
+			var md10 = "\">添加</button></fieldset></div>"
+			var contentmodel = md1+connum+md2+connum+md3+connum+md4+connum+md5+connum+md6+connum+md7+connum+md8+connum+md9+connum+md10
+			getcontent = document.getElementById("myTabContent")
+			// console.log(contentmodel)
+			console.log(res)
+			getcontent.innerHTML = getcontent.innerHTML+contentmodel
+				})

@@ -2,61 +2,44 @@ Bmob.initialize("0e24ccb1d5f8ad62", "123456");
 
 window.onload = function () {//进入网页即加载表中数据
 
-	const query = Bmob.Query("ep2")//获取ep表，加载ep1,2,3
+	const query = Bmob.Query("ep3")//获取ep表，加载ep1,2,3
 	query.find().then(res => {
-		
 		var epx = "";//记得加上这个否则会出现undefined
 		var i;
 		for (i = 0; i < res.length; i++) {
-
 			var epx = epx+res[i].code;
-			 
-			
 		}
-		// console.log(epx);
-		
-		
-		
-		
 		getul = document.getElementsByTagName("ul")//定位<ul>元素位置
-		// getli = document.getElementsByTagName("li")
-
-		// console.log(getul.length);
-		// console.log(getli.length);
-
 		defineul = getul[0]
-		// console.log(defineul.innerHTML)
 		defineul.innerHTML = defineul.innerHTML+epx//向<ul>中添加表中数据
 
-
+		const query = Bmob.Query("ep_content")
+		query.find().then(res => {
+		
+			// console.log(res[0].code);
+			epp = res[0].code
+			getcontent = document.getElementById("myTabContent")
+			// console.log(getcontent)
+			getcontent.innerHTML = getcontent.innerHTML+epp
+			
+		})
 	})
+	
 
+		
 
 }
 
-// function test()  {
-
-// 	// 点击按钮向数据库添加一列数据
-// 	const query = Bmob.Query('test1')
-// 	query.set("code_name","code")
-// 	query.set("zzz","ssssssss")
-
-// 	query.save().then(res => {
-//   		console.log(res)
-// 			}).catch(err => {
-//   		console.log(err)
-// 	})
-
-// }
-
-
-
+function autoPlay() {
+	var myAuto = document.getElementById('myaudio');
+	myAuto.play();    
+}
 function addepisode () {//向表中添加一行数据<li>
 // 1. 获取ep表，通过.length获取最后一集的epnumber，
 // 2. 建立<li>标签模板
 // 3. 向表中添加数据
 // 4. 将数据插入<ul>的标签中
-	const query = Bmob.Query("ep2")//获取ep表，
+	const query = Bmob.Query("ep3")//获取ep表，
 	query.find().then(res => {
 		lastep = res.length+1//通过.length获取最后一集的集数epnumber+1
 		lastepch = NumberToChinese(res.length+1)
@@ -73,33 +56,45 @@ function addepisode () {//向表中添加一行数据<li>
 		var mx7 = "集</a>"
 		var mx8 = "</li>"
 		var epmodel = mx0+mx1+lastep+mx2+mx3+lastep+mx2+mx4+mx5+lastep+mx2+mx6+lastepch+mx7+mx8//ep模板
-		console.log(epmodel);
+		// console.log(epmodel);
+		var md1 = "<div class=\"tab-pane fade show active\" id=\"ep"
+		var md2 = "\" role=\"tabpanel\" aria-labelledby=\"eptab"
+		var md3 = "\"><div class = \"row shangbianju\"><div class=\"col-md-12 d-flex\"><audio src=\"audio/"
+		var md4 = ".wav\" id=\"myaudio\" controls=\"controls\" hidden=\"true\"></audio><button onclick=\"autoPlay()\" type=\"button\" class=\"btn btn-outline-secondary \" data-toggle=\"collapse\" href=\"#collapse"
+		var md5 = "\" role=\"button\" aria-expanded=\"false\" aria-controls=\"collapse"
+		var md6 = "\></button><div class=\"collapse\" id=\"collapse"
+		var md7 = "\"><div class=\"card card-body\"> </div></div></div></div><br><fieldset><legend>添加内容</legend><textarea id=\"origin"
+		var md8 = "\">原文</textarea> <textarea id=\"translate"
+		var md9 = "\">翻译/注释</textarea><br><button type=\"button\" class=\"btn btn-outline-secondary\" id=\"btn"
+		var md10 = "\">添加</button></fieldset></div>"
+		var contentmodel = md1+lastep+md2+lastep+md3+lastep+md4+lastep+md5+lastep+md6+lastep+md7+lastep+md8+lastep+md9+lastep+md10
 		
-		// 点击按钮向数据库添加一列数据
-		const query = Bmob.Query("ep2")
+		// 向数据库ep添加一列数据
+		const query = Bmob.Query("ep3")
 		query.set("code",epmodel)
-		
-
 		query.save().then(res => {
-			console.log(res)
-				}).catch(err => {
+			
+			getul = document.getElementsByTagName("ul")
+			defineul = getul[0]
+			// console.log(res)
+			defineul.innerHTML = defineul.innerHTML + epmodel
+				// 向数据库ep_content添加一列数据
+				const query = Bmob.Query('ep_content')
+				query.set("code",contentmodel)
+				query.save().then(res => {
+					
+						}).catch(err => {
+					console.log(err)
+				})
+				getcontent = document.getElementById("myTabContent")
+					// console.log(contentmodel)
+					console.log(getcontent)
+					getcontent.innerHTML = getcontent.innerHTML+contentmodel
+		
+		}).catch(err => {
 			console.log(err)
 		})
-
-		getul = document.getElementsByTagName("ul")
-		// getli = document.getElementsByTagName("li")
-		// console.log(getul.length);
-		// console.log(getli.length);
-		defineul = getul[0]
-		console.log(defineul.innerHTML)
-		defineul.innerHTML = defineul.innerHTML + epmodel
-
-		
-		
-		
-		
 	})
-
 	// 点击按钮向数据库添加一列数据
 	// const query = Bmob.Query('ep')
 	// query.set("code","tag_name")
