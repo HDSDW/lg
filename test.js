@@ -4,9 +4,39 @@ var epc = "<div class=\"tab-pane fade show active\" id=\"ep2\" role=\"tabpanel\"
 
 var tabc = document.getElementsByClassName('tab-content')
 var def = tabc[0];
-function test() {
+function test(params) {
+
+    getoritxt=document.getElementById("origin")
+    getoritrans=document.getElementById("translate")
+
+    getcontent = document.getElementsByClassName('collapse-button')//定位tab-content类位置
+    definetabcon = getcontent[0]
+    // definetabcon.innerHTML = definetabcon.innerHTML+epp//向tab-content类中数据
+    // console.log(definetabcon.innerHTML);
+    var te= "sssssssssssss"
+    definetabcon.innerHTML= definetabcon.innerHTML+getoritxt.value
+
+    getcontent2 = document.getElementsByClassName('collapse-body')
+    definetabcon2 = getcontent2[0]
     
-console.log(def.innerHTML);
-def.innerHTML= def.innerHTML+epc
+    definetabcon2.innerHTML= definetabcon2.innerHTML+getoritrans.value
+
+    getoritxt=document.getElementById("origin").value
+    getoritrans=document.getElementById("translate").value
+
+    console.log(getoritxt);
     
+
+
+    
+}
+
+function addcontent(params) {
+
+
+        getoritxt=document.getElementById("origin")
+        getoritrans=document.getElementById("translate")
+
+
+
 }

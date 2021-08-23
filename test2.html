@@ -40,10 +40,12 @@
             <div class = "row shangbianju">
               <div class="col-md-12 d-flex">
                 <!--用collapse创建折叠-->
-                <button type="button" class="btn btn-outline-secondary " 
-                        data-toggle="collapse" href="#collapse1" role="button" aria-expanded="false" aria-controls="collapse1">どうしたの　ゆうこ</button>
+                <button type="button" class="btn btn-outline-secondary collapse-button" 
+                        data-toggle="collapse" href="#collapse1" role="button" aria-expanded="false" aria-controls="collapse1">
+                        どうしたの　ゆうこ
+                </button>
                 <div class="collapse" id="collapse1">
-                    <div class="card card-body">
+                    <div class="card card-body collapse-body">
                       怎么了 佑子
                     </div>
                 </div>
@@ -54,21 +56,21 @@
             <fieldset>
               <legend>添加内容</legend>
               
-              <textarea name="origin" id="origin1">原文</textarea>
-              <textarea name="translate" id="translate1">翻译/注释</textarea>
+              <textarea name="origin" id="origin">原文</textarea>
+              <textarea name="translate" id="translate">翻译/注释</textarea>
               <br>
-              <buttontype="button" class="btn btn-outline-secondary">添加</button>
+              <buttontype="button" class="btn btn-outline-secondary" onclick="addcontent()">添加</button>
             </fieldset>
         </div>
         <!--eptab2-->
         <div class="tab-pane fade" id="ep2" role="tabpanel" aria-labelledby="eptab2">
             <div class = "row shangbianju"><div class="col-md-12 d-flex">
-                <button type="button" class="btn btn-outline-secondary " data-toggle="collapse" href="#collapse2" role="button" aria-expanded="false" aria-controls="collapse2">
-                    5555555555
+                <button type="button" class="btn btn-outline-secondary collapse-button" data-toggle="collapse" href="#collapse2" role="button" aria-expanded="false" aria-controls="collapse2">
+                    
                 </button>
                 <div class="collapse" id="collapse2">
                     <div class="card card-body">
-                        55555555555
+                        
                      </div>
                 </div>
             </div>
@@ -76,10 +78,10 @@
         <br>
         <fieldset>
             <legend>添加内容</legend>
-            <textarea id="origin2">原文</textarea>
-            <textarea id="translate2">翻译/注释</textarea>
+            <textarea id="origin">原文</textarea>
+            <textarea id="translate">翻译/注释</textarea>
             <br>
-            <button type="button" class="btn btn-outline-secondary" id="btn2">添加</button>
+            <button type="button" class="btn btn-outline-secondary" id="btn2" onclick="addcontent()">添加</button>
         </fieldset>
     </div>
       

@@ -8,6 +8,7 @@
 3 Element.getElementsByClassName() 方法返回一个即时更新的（live） HTMLCollection，包含了所有拥有指定 class 的子元素。
   Element表示文档中的元素，不是固定的
 https://developer.mozilla.org/zh-CN/docs/Web/API/Element/getElementsByClassName
+注意是element还是elements
 
 
 

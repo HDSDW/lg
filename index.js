@@ -12,26 +12,42 @@ window.onload = function () {//进入网页即加载表中数据
 		getul = document.getElementsByTagName("ul")//定位<ul>元素位置
 		defineul = getul[0]
 		defineul.innerHTML = defineul.innerHTML+epx//向<ul>中添加表中数据
-
+///分割线////
 		const query = Bmob.Query("ep_content2")//获取ep_content表，加载ep_content
 		query.find().then(res => {
-			var epp=""
-			var j=""
-			for (j=0; j<res.length; j++) {
-				epp=epp+res[j].code
-			}
-			getcontent = document.getElementsByClassName('tab-content')//定位tab-content类位置
-			definetabcon = getcontent[0]
-			definetabcon.innerHTML = definetabcon.innerHTML+epp//向tab-content类中数据
-			
+		var epp=""
+		var j=""
+		for (j=0; j<res.length; j++) {
+			epp=epp+res[j].code
+		}
+		getcontent = document.getElementsByClassName('tab-content')//定位tab-content类位置
+		definetabcon = getcontent[0]
+		definetabcon.innerHTML = definetabcon.innerHTML+epp//向tab-content类中数据
+////分割线///
+		const query = Bmob.Query("txt")//获取第一集每行原文内容
+		query.find().then(res => {
+
+		getoritxt = document.getElementsByClassName('collapse-button')//获取原文字内容的位置
+		defineoritxt = getoritxt[0]
+		var as = res[0].oritext
+		console.log(as);
+		
+		defineoritxt.innerHTML= defineoritxt.innerHTML+as
+		
+		
+	})
 		})
 	})
+
+	
 }
 
 function autoPlay() {
 	var myAuto = document.getElementById('myaudio');
 	myAuto.play();    
 }
+
+//////////添加集数
 function addepisode () {//向表中添加一行数据<li>
 // 1. 获取ep表，通过.length获取最后一集的epnumber，
 // 2. 建立<li>标签模板
@@ -56,7 +72,7 @@ function addepisode () {//向表中添加一行数据<li>
 		var md1 = "<div class=\"tab-pane fade\" id=\"ep"
 		var md2 = "\" role=\"tabpanel\" aria-labelledby=\"eptab"
 		var md3 = "\"><div class = \"row shangbianju\"><div class=\"col-md-12 d-flex\"><audio src=\"audio/"
-		var md4 = ".wav\" id=\"myaudio\" controls=\"controls\" hidden=\"true\"></audio><button onclick=\"autoPlay()\" type=\"button\" class=\"btn btn-outline-secondary \" data-toggle=\"collapse\" href=\"#collapse"
+		var md4 = ".wav\" id=\"myaudio\" controls=\"controls\" hidden=\"true\"></audio><button onclick=\"autoPlay()\" type=\"button\" class=\"btn btn-outline-secondary collapse-button\" data-toggle=\"collapse\" href=\"#collapse"
 		var md5 = "\" role=\"button\" aria-expanded=\"false\" aria-controls=\"collapse"
 		var md6 = "\"></button><div class=\"collapse\" id=\"collapse"
 		var md7 = "\"><div class=\"card card-body\"> </div></div></div></div><br><fieldset><legend>添加内容</legend><textarea id=\"origin"
@@ -91,6 +107,25 @@ function addepisode () {//向表中添加一行数据<li>
 		})
 	})
 
+}
+
+//////////添加文本内容
+function addtxt(params) {
+
+	getoritxt=document.getElementById("origin").value
+    getoritrans=document.getElementById("translate").value
+
+	const query = Bmob.Query('txt');
+	query.set("translation",getoritrans)
+	query.set("oritext",getoritxt)
+	query.save().then(res => {
+		console.log(res)
+	}).catch(err => {
+		console.log(err)
+	})
+
+
+	
 }
 
 		//阿拉伯数字转汉字
