@@ -23,19 +23,61 @@ window.onload = function () {//进入网页即加载表中数据
 		getcontent = document.getElementsByClassName('tab-content')//定位tab-content类位置
 		definetabcon = getcontent[0]
 		definetabcon.innerHTML = definetabcon.innerHTML+epp//向tab-content类中数据
-////分割线///
-		const query = Bmob.Query("txt")//获取第一集每行原文内容
+/////////分割线////////////////////////////////
+		const query = Bmob.Query("row")//获取row表，加载row
 		query.find().then(res => {
 
-		getoritxt = document.getElementsByClassName('collapse-button')//获取原文字内容的位置
-		defineoritxt = getoritxt[0]
-		var as = res[0].oritext
-		console.log(as);
+			var rowcon=""
+			var k
+			for (k= 0; k < res.length; k++) {
+				rowcon = rowcon+res[k].row_code
+			}
+			getrow = document.getElementsByClassName('tab-pane')
+			definerow = getrow[0]
+			definerow.innerHTML = rowcon+definerow.innerHTML
+			// console.log(res)
+
+		})
+
+
+////分割线///
+	// 	const query = Bmob.Query("txt")//获取第一集每行原文内容
+	// 	query.find().then(res => {
+
+	// 	getoritxt = document.getElementsByClassName('collapse-button')//获取原文字内容的位置
+	// 	defineoritxt = getoritxt[0]
+	// 	gettrans = document.getElementsByClassName('card')//获取翻译内容的位置
+	// 	definetrans = gettrans[0]
+
+	// 	var as = res[0].oritext
+	// 	var bs = res[0].translation
+	// 	var txtep = res[0].epnum
+	// 	console.log(bs)
 		
-		defineoritxt.innerHTML= defineoritxt.innerHTML+as
+	// 	definetrans.innerHTML= definetrans.innerHTML+bs///写入内容
+	// 	defineoritxt.innerHTML= defineoritxt.innerHTML+as
+
+	// 	function addtxt(params) {
+
+	// 		getoritxt=document.getElementById("origin").value
+	// 		getoritrans=document.getElementById("translate").value
+		
+	// 		const query = Bmob.Query('txt');
+	// 		query.set("translation",getoritrans)
+	// 		query.set("oritext",getoritxt)
+	// 		query.set("epnum",)
+	// 		query.save().then(res => {
+	// 			console.log(res)
+	// 		}).catch(err => {
+	// 			console.log(err)
+	// 		})
 		
 		
-	})
+			
+	// 	}
+		
+		
+	// })
 		})
 	})
 
@@ -45,6 +87,37 @@ window.onload = function () {//进入网页即加载表中数据
 function autoPlay() {
 	var myAuto = document.getElementById('myaudio');
 	myAuto.play();    
+}
+////添加一行
+function addrow(params) {
+		
+		const query = Bmob.Query("row")//获取表，
+		query.find().then(res => {
+
+			lastep = res.length+1//通过.length获取最后一集的集数epnumber+1
+			var md4 = "<div class = \"row shangbianju\"><div class=\"col-md-12 d-flex\"><audio src=\"audio/"
+			var md5 = ".wav\" id=\"myaudio\" controls=\"controls\" hidden=\"true\"></audio><button onclick=\"autoPlay()\" type=\"button\" class=\"btn btn-outline-secondary collapse-button\" data-toggle=\"collapse\" href=\"#collapse"
+			var md6 = "\" role=\"button\" aria-expanded=\"false\" aria-controls=\"collapse"
+			var md7 = "\"></button><div class=\"collapse\" id=\"collapse"
+			var md7 = "\"><div class=\"card card-body\"> </div></div></div></div><br>"
+			var rowmodel = md4+lastep+md5+lastep+md6+lastep+md7//row模板
+	
+			getrow = document.getElementsByClassName('tab-pane')
+			definerow = getrow[0]
+			definerow.innerHTML = rowmodel+definerow.innerHTML// 向数据库row添加一列数据
+
+			
+			query.set("row_code", rowmodel)
+			query.save().then(res => {
+	
+	
+		}).catch(err => {
+			console.log(err)
+		})
+	
+		})
+	
+	
 }
 
 //////////添加集数
@@ -71,15 +144,14 @@ function addepisode () {//向表中添加一行数据<li>
 
 		var md1 = "<div class=\"tab-pane fade\" id=\"ep"
 		var md2 = "\" role=\"tabpanel\" aria-labelledby=\"eptab"
-		var md3 = "\"><div class = \"row shangbianju\"><div class=\"col-md-12 d-flex\"><audio src=\"audio/"
-		var md4 = ".wav\" id=\"myaudio\" controls=\"controls\" hidden=\"true\"></audio><button onclick=\"autoPlay()\" type=\"button\" class=\"btn btn-outline-secondary collapse-button\" data-toggle=\"collapse\" href=\"#collapse"
-		var md5 = "\" role=\"button\" aria-expanded=\"false\" aria-controls=\"collapse"
-		var md6 = "\"></button><div class=\"collapse\" id=\"collapse"
-		var md7 = "\"><div class=\"card card-body\"> </div></div></div></div><br><fieldset><legend>添加内容</legend><textarea id=\"origin"
-		var md8 = "\">原文</textarea> <textarea id=\"translate"
-		var md9 = "\">翻译/注释</textarea><br><button type=\"button\" class=\"btn btn-outline-secondary\" id=\"btn"
-		var md10 = "\">添加</button></fieldset></div>"
-		var contentmodel = md1+lastep+md2+lastep+md3+lastep+md4+lastep+md5+lastep+md6+lastep+md7+lastep+md8+lastep+md9+lastep+md10//ep_content模板
+		var md3 = "\">"
+		var md8 = "<fieldset><legend>添加内容</legend><textarea id=\"origin"
+		var md9 = "\">原文</textarea> <textarea id=\"translate"
+		var md10 = "\">翻译/注释</textarea><br><button type=\"button\" class=\"btn btn-outline-secondary\" id=\"btn"
+		var md11 = "\">添加</button></fieldset></div>"
+		var contentmodel = md1+lastep+md2+lastep+md3+md8+lastep+md9+lastep+md10//ep_content模板
+
+		
 		
 		
 		const query = Bmob.Query("ep2")
@@ -97,7 +169,7 @@ function addepisode () {//向表中添加一行数据<li>
 				getcontent = document.getElementsByClassName('tab-content')
 				definetabcon = getcontent[0]
 				definetabcon.innerHTML = definetabcon.innerHTML+contentmodel// 向数据库ep_content添加一列数据
-
+				
 					}).catch(err => {
 				console.log(err)
 			})
@@ -110,23 +182,7 @@ function addepisode () {//向表中添加一行数据<li>
 }
 
 //////////添加文本内容
-function addtxt(params) {
 
-	getoritxt=document.getElementById("origin").value
-    getoritrans=document.getElementById("translate").value
-
-	const query = Bmob.Query('txt');
-	query.set("translation",getoritrans)
-	query.set("oritext",getoritxt)
-	query.save().then(res => {
-		console.log(res)
-	}).catch(err => {
-		console.log(err)
-	})
-
-
-	
-}
 
 		//阿拉伯数字转汉字
 		var chnNumChar = ["零","一","二","三","四","五","六","七","八","九"];
