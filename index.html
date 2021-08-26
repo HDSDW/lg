@@ -25,8 +25,9 @@
             
         </div>
     </div>
-    <button id="test" onclick = "addrow()">addrow</button>
     <button id="addep" onclick = "addepisode()">添加集数</button>
+    <button id="test" onclick = "test()" class="button">test</button>
+    !!!一集的内容添加完成后再添加下一集的tab!!!
     <hr>
     <!--.nav-tabs类创建导航菜单-->
     <ul class="nav nav-tabs" id="myTab" role="tablist">
@@ -43,31 +44,31 @@
     <!--tab里面的内容-->
     <div class="tab-content" id="myTabContent">
 
-        <!-- <div class="tab-pane fade show active" id="ep1" role="tabpanel" aria-labelledby="eptab1">//ep_content1内容与上文eptab1对应
+    <!-- <div class="tab-pane fade show active" id="ep1" role="tabpanel" aria-labelledby="eptab1">//ep_content1内容与上文eptab1对应
             <div class = "row shangbianju">
-              <div class="col-md-12 d-flex">
-                //用collapse创建折叠
-                <audio src="audio/1.wav" id="myaudio" controls="controls" hidden="true"></audio>
-                <button onclick="autoPlay()" type="button" class="btn btn-outline-secondary collapse-button " 
-                        data-toggle="collapse" href="#collapse1" role="button" aria-expanded="false" aria-controls="collapse1"></button>
-                <div class="collapse" id="collapse1">
-                    <div class="card card-body">
-                      怎么了 佑子
+                <div class="col-md-12 d-flex">
+                    //用collapse创建折叠
+                    <audio src="audio/1.wav" id="myaudio" controls="controls" hidden="true"></audio>
+                    <button onclick="autoPlay()" type="button" class="btn btn-outline-secondary collapse-button " 
+                            data-toggle="collapse" href="#collapse1" role="button" aria-expanded="false" aria-controls="collapse1"></button>
+                    <div class="collapse" id="collapse1">
+                        <div class="card card-body">
+                        怎么了 佑子
+                        </div>
                     </div>
                 </div>
             </div>
-            </div>
-    
-            <br>
-            <fieldset>
-              <legend>添加内容</legend>
-              
-              <textarea name="origin" id="origin1">原文</textarea>
-              <textarea name="translate" id="translate1">翻译/注释</textarea>
-              <br>
-              <buttontype="button" class="btn btn-outline-secondary" onclick="addtxt()">添加</button>
-            </fieldset>
-          </div> -->
+                <br>
+                <button id="addrow1" onclick = "addrow()" class="btn btn-outline-secondary mb-1">添加一行</button>
+                <fieldset>
+                <legend>添加内容</legend>
+                
+                <textarea name="origin" id="origin1">原文</textarea>
+                <textarea name="translate" id="translate1">翻译/注释</textarea>
+                <br>
+                <buttontype="button" class="btn btn-outline-secondary" id=btn1 onclick="addtxt()">添加</button>
+                </fieldset>
+         </div> -->
           
         <!-- <div class="tab-pane fade" id="ep2" role="tabpanel" aria-labelledby="eptab2">//ep_content1内容与上文eptab2对应
                 <div class = "row shangbianju">
@@ -83,6 +84,7 @@
                     </div>
                 </div>
                 <br>
+                <button id="addrow2" onclick = "addrow()" class="btn btn-outline-secondary mb-1">添加一行</button>
                 <fieldset>
                     <legend>添加内容</legend>
                     <textarea id="origin">原文</textarea>
@@ -94,7 +96,7 @@
       
     </div>
 
-      
+
    
 </div>
 
@@ -103,7 +105,6 @@
 <script src="js/bootstrap.js"></script>
 <script src="Bmob-2.2.5.min.js"></script>
 <script src="index.js"></script>
-<script src="test.js"></script>
 
 </body>
 </html>
