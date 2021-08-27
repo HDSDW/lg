@@ -14,7 +14,7 @@
         }
         
     </script> -->
-    <title>日常</title>
+    <title>test</title>
 </head>
 <body>
 <div class="container-fluid">
@@ -35,9 +35,9 @@
         <li class="nav-item" role="presentation">
             <a class="nav-link active" id="eptab1" data-toggle="tab" href="#ep1" role="tab" aria-controls="ep1" aria-selected="true">第一集</a>
         </li>
-        <li class="nav-item" role="presentation">
+        <!-- <li class="nav-item" role="presentation">
             <a class="nav-link" id="eptab2" data-toggle="tab" href="#ep2" role="tab" aria-controls="ep2" aria-selected="true">第二集</a>
-        </li>
+        </li> -->
     
     </ul>
     
@@ -45,14 +45,13 @@
     <div class="tab-content" id="myTabContent">
 
     <div class="tab-pane fade show active" id="ep1" role="tabpanel" aria-labelledby="eptab1">
-        <button id="addrow" onclick = "addrow()" class="btn btn-outline-secondary mb-1">添加一行</button>
         <fieldset>
         <legend>添加内容</legend>
         
-        <textarea name="origin" id="origin1">原文</textarea>
-        <textarea name="translate" id="translate1">翻译/注释</textarea>
+        <textarea name="origin" id="origin">原文</textarea>
+        <textarea name="translate" id="translate">翻译/注释</textarea>
         <br>
-        <buttontype="button" class="btn btn-outline-secondary" id=btn1 onclick="addtxt()">添加</button>
+        <buttontype="button" id="addrow" onclick = "addrow()" class="btn btn-outline-secondary mb-1">添加一行</button>
         </fieldset>
         <br>
 
@@ -60,7 +59,7 @@
                 <div class="col-md-12 d-flex">
                     
                     <audio src="audio/1.wav" id="myaudio" controls="controls" hidden="true"></audio>
-                    <button onclick="autoPlay()" type="button" class="btn btn-outline-secondary collapse-button " 
+                    <button type="button" class="btn btn-outline-secondary collapse-button " 
                             data-toggle="collapse" href="#collapse1" role="button" aria-expanded="false" aria-controls="collapse1">111</button>
                     <div class="collapse" id="collapse1">
                         <div class="card card-body">
@@ -71,7 +70,7 @@
             </div>
          </div>
           
-        <div class="tab-pane fade" id="ep2" role="tabpanel" aria-labelledby="eptab2">
+        <!-- <div class="tab-pane fade" id="ep2" role="tabpanel" aria-labelledby="eptab2">
             <br>
             <button id="addrow" onclick = "addrow()" class="btn btn-outline-secondary mb-1">添加一行</button>
             <fieldset>
@@ -94,7 +93,7 @@
                         </div>
                     </div>
                 </div>
-        </div>
+        </div> -->
       
     </div>
 

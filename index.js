@@ -11,7 +11,7 @@ window.onload = function () {//进入网页即加载表中数据
 		}
 		getul = document.getElementsByTagName("ul")//定位<ul>元素位置
 		defineul = getul[0]
-		defineul.innerHTML = defineul.innerHTML+epx//向<ul>中添加表中数据
+		defineul.innerHTML = defineul.innerHTML+epx//向<ul>中添加表中添加<li>即eptab数据
 ///分割线////
 		const query = Bmob.Query("epcontent")//获取ep_content表，加载ep_content
 		query.find().then(res => {
@@ -22,7 +22,7 @@ window.onload = function () {//进入网页即加载表中数据
 		}
 		getcontent = document.getElementsByClassName('tab-content')//定位tab-content类位置
 		definetabcon = getcontent[0]
-		definetabcon.innerHTML = definetabcon.innerHTML+epp//向tab-content类中数据
+		definetabcon.innerHTML = definetabcon.innerHTML+epp//向tab-content类中添加tabpane数据
 /////////分割线////////////////////////////////
 		const query = Bmob.Query("row")//获取row表，加载row
 		query.find().then(res => {
@@ -37,47 +37,33 @@ window.onload = function () {//进入网页即加载表中数据
 			definerow.innerHTML = rowcon+definerow.innerHTML
 			// console.log(res)
 
+			////分割线///
+		// const query = Bmob.Query("txt")//获取第一集每行原文内容
+		// query.find().then(res => {
+
+		// getbt=document.getElementsByClassName('collapse-button')//获取collapse-button和card-body集合
+		// getcardbody=document.getElementsByClassName('card-body')
+		// getepnum = document.getElementsByClassName('tab-pane').length//通过获取当前tab的数量设置行内容的epnumber即当前集数
+		
+		// //1
+		// getbt[0].innerHTML=res[0].oritext
+		// getcardbody[0].innerHTML=res[0].translation
+		// console.log(getbt[0])
+		
+		// //2
+		// getbt[1].innerHTML=res[1].oritext
+		// getcardbody[1].innerHTML=res[1].translation
+
+		// console.log(getbt[1])
+
+		
+
+		// })
+
+
 		})
 
 
-////分割线///
-	// 	const query = Bmob.Query("txt")//获取第一集每行原文内容
-	// 	query.find().then(res => {
-
-	// 	getoritxt = document.getElementsByClassName('collapse-button')//获取原文字内容的位置
-	// 	defineoritxt = getoritxt[0]
-	// 	gettrans = document.getElementsByClassName('card')//获取翻译内容的位置
-	// 	definetrans = gettrans[0]
-
-	// 	var as = res[0].oritext
-	// 	var bs = res[0].translation
-	// 	var txtep = res[0].epnum
-	// 	console.log(bs)
-		
-	// 	definetrans.innerHTML= definetrans.innerHTML+bs///写入内容
-	// 	defineoritxt.innerHTML= defineoritxt.innerHTML+as
-
-	// 	function addtxt(params) {
-
-	// 		getoritxt=document.getElementById("origin").value
-	// 		getoritrans=document.getElementById("translate").value
-		
-	// 		const query = Bmob.Query('txt');
-	// 		query.set("translation",getoritrans)
-	// 		query.set("oritext",getoritxt)
-	// 		query.set("epnum",)
-	// 		query.save().then(res => {
-	// 			console.log(res)
-	// 		}).catch(err => {
-	// 			console.log(err)
-	// 		})
-		
-		
-			
-	// 	}
-		
-		
-	// })
 		})
 	})
 
@@ -88,33 +74,41 @@ function autoPlay() {
 	var myAuto = document.getElementById('myaudio');
 	myAuto.play();    
 }
-////添加一行
+//////////////////////////////添加一行/////////////////////////
 function addrow(params) {
 		
 		const query = Bmob.Query("row")//获取表，
 		query.find().then(res => {
 
+			getoritxt=document.getElementById("origin").value//获取文本框里的内容
+			getoritrans=document.getElementById("translate").value
+
 			lastep = res.length+1
-			var md4 = "<div class = \"row shangbianju\"><div class=\"col-md-12 d-flex\"><audio src=\"audio/"
-			var md5 = ".wav\" id=\"myaudio\" controls=\"controls\" hidden=\"true\"></audio><button onclick=\"autoPlay()\" type=\"button\" class=\"btn btn-outline-secondary collapse-button\" data-toggle=\"collapse\" href=\"#collapse"
+			var md4 = "<div class = \"row\">"
+			var md9 ="<div class=\"col-md-12 d-flex\">"
+			var md10 ="<audio src=\"audio/"
+			var md5 = ".wav\" id=\"myaudio\" controls=\"controls\" hidden=\"true\"></audio>"
+			var md11 ="<button onclick=\"autoPlay()\" type=\"button\" class=\"btn btn-outline-secondary collapse-button\" data-toggle=\"collapse\" href=\"#collapse"
 			var md6 = "\" role=\"button\" aria-expanded=\"false\" aria-controls=\"collapse"
-			var md7 = "\"></button><div class=\"collapse\" id=\"collapse"
-			var md8 = "\"><div class=\"card card-body\"> </div></div></div></div><br>"
-			var rowmodel = md4+lastep+md5+lastep+md6+lastep+md7+lastep+md8//row模板
+			var md7 = "\">"
+			var md12 ="</button><div class=\"collapse\" id=\"collapse"
+			var md8 = "\">"
+			var md13 = "<div class=\"card card-body\">"
+			var md14 = "</div></div></div></div><br>"
+			var rowmodel = md4+md9+md10+lastep+md5+md11+lastep+md6+lastep+md7+getoritxt+md12+lastep+md8+md13+getoritrans+md14//row模板
 	
 			getepnum = document.getElementsByClassName('tab-pane').length//通过获取当前tab的数量设置行内容的epnumber,所以要完成1集再开始下一集
 			epnum = "ep"+getepnum
-			gettab=document.getElementById(epnum)
-			gettab.innerHTML=rowmodel+gettab.innerHTML
+			gettab=document.getElementById(epnum)//通过ep1定位tab-pane的位置
+			gettab.innerHTML=rowmodel+gettab.innerHTML//向tab-pane写入数据
 
-
-			
 			query.set("row_code", rowmodel)
-			query.set("epnum", epnum)
+			query.set("epnum", getepnum)
 
 			query.save().then(res => {
-	
-	
+
+			window.location.reload(true)
+
 		}).catch(err => {
 			console.log(err)
 		})
@@ -125,9 +119,18 @@ function addrow(params) {
 }
 function test(params) {
 	
-	addrowbt=document.getElementsByClassName('tab-pane').length
+	getepnum = document.getElementsByClassName('tab-pane').length//通过获取当前tab的数量设置行内容的epnumber
+	getoritxt=document.getElementById("origin").value//获取文本框里的内容
+	getoritrans=document.getElementById("translate").value
+	getbt=document.getElementsByClassName('collapse-button')
+	getcardbody=document.getElementsByClassName('card-body')
+	var c=getbt.length-1
+	// getbt[c].innerHTML=getoritxt
+	// getcardbody[c].innerHTML=getoritrans
+
+	console.log(getoritxt)
+	console.log(getoritrans)
 	
-	console.log(addrowbt);
 
 }
 
@@ -157,13 +160,12 @@ function addepisode () {//向表中添加一行数据<li>
 		var md1 = "<div class=\"tab-pane fade\" id=\"ep"
 		var md2 = "\" role=\"tabpanel\" aria-labelledby=\"eptab"
 		var md3 = "\">"
-		var md12 ="<button id=\"addrow"
-		var md13 ="\" onclick = \"addrow()\" class=\"btn btn-outline-secondary mb-1\">添加一行</button>"
-		var md8 = "<fieldset><legend>添加内容</legend><textarea id=\"origin"
-		var md9 = "\">原文</textarea> <textarea id=\"translate"
-		var md10 = "\">翻译/注释</textarea><br><button type=\"button\" class=\"btn btn-outline-secondary\" id=\"btn"
-		var md11 = "\">添加</button></fieldset></div>"
-		var contentmodel = md1+lastep+md2+lastep+md3+md12+lastep+md13+md8+lastep+md9+lastep+md10+lastep+md11//ep_content模板
+		var md8 = "<fieldset>"
+		var md9 = "<legend>添加内容</legend>"
+		var md10 = "<textarea id=\"origin\">原文</textarea> <textarea id=\"translate\">翻译/注释</textarea><br>"
+		var md11 = "<button type=\"button\" class=\"btn btn-outline-secondary mb-2 mt-1\" onclick = \"addrow()\">添加一行</button>"
+		var md12="</fieldset></div>"
+		var contentmodel = md1+lastep+md2+lastep+md3+md8+md9+md10+md11+md12//ep_content模板
 
 		
 		
