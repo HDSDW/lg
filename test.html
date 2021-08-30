@@ -3,71 +3,27 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-</head>
-<body id="ex">
-    <input type="text" name="username" id="username" placeholder="输入用户名">
-    <input type="text" name="password" id="password" placeholder="输入密码">
+    <title>test</title>
+    <script>
 
-	<button type="button" onclick="reggister()">提交注册</button>
-    <button type="button" onclick="loggin()">登录</button>
+        document.addEventListener("DOMContentLoaded", function() {
 
-    <hr>
+                function createParagraph() {
+                    let para = document.createElement('p');
+                    para.textContent = '你点击了这个按钮！';
+                    document.body.appendChild(para);
+                }
 
-    <script type="text/javascript">
-    
-    window.onload = function add() {
+                    const buttons = document.querySelectorAll('button');
 
-
-
-        const query = Bmob.Query('test1');
-        query.get('FHBp777I').then(res => {
-            console.log(res.code)
-            html = res.code;
-            inner = document.getElementById("ex")
-            inner.innerHTML=inner.innerHTML + html;
-            
-            }).catch(err => {
-                console.log(err)
-                    })
-
-
-        // const query = Bmob.Query('test1');
-        query.get('Yq6K999F').then(res => {
-            console.log(res.code)
-            html2 = res.code;
-            inner2 = document.getElementById("1")
-            inner2.innerHTML=inner2.innerHTML + html2;
-            
-            }).catch(err => {
-                console.log(err)
-                    })
-
-}
-
+                    for(let i = 0; i < buttons.length ; i++) {
+                        buttons[i].addEventListener('click', createParagraph);
+                                   }
+            });
     </script>
-    <p id="a" style="">pppppppppppppppp</p>
-    <Button onclick="add()">添加数据到表</Button>
-    <Button onclick="add2()">添加数据到页面</Button>
-    <Button onclick="change()">更改表中数据</Button>
-    <Button onclick="test2()">test2</Button>
+</head>
+<body>
 
-    <div class = "cl">
-        <div class = "cc">
-            <p>aaaaaaaaaaaaaaa</p>
-        </div>
-    </div>
-    
-    <input type="text" name="" id="11">
-    <Button onclick="test11()">test11</Button>
-
-    <br>
-    <Button onclick="test()">test</Button>
-
-    <script src="Bmob-2.2.5.min.js"></script>
-    <script src="my.js"></script>
-    <script src="test.js"></script>
-
-    
+    <button>aaaaaaaaa</button>
 </body>
 </html>
