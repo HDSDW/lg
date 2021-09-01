@@ -8,22 +8,21 @@
 
         document.addEventListener("DOMContentLoaded", function() {
 
-                function createParagraph() {
-                    let para = document.createElement('p');
-                    para.textContent = '你点击了这个按钮！';
-                    document.body.appendChild(para);
-                }
-
-                    const buttons = document.querySelectorAll('button');
-
-                    for(let i = 0; i < buttons.length ; i++) {
-                        buttons[i].addEventListener('click', createParagraph);
-                                   }
+                    btn=document.querySelector("button")
+                    btn.addEventListener("click", function(event) {
+                        let a=Math.random()
+                        let b=Math.floor(a*100)
+                        alert(b)
+                    })
+                    
+                    @import url("https://cdn.jsdelivr.net/npm/bootstrap-icons@1.5.0/font/bootstrap-icons.css");
             });
     </script>
 </head>
 <body>
-
+    <label for="guessField">请猜数：</label>
+<input type="text" id="guessField" class="guessField">
+<input type="submit" value="确定" class="guessSubmit">
     <button>aaaaaaaaa</button>
 </body>
 </html>

@@ -15,8 +15,10 @@
 方法返回一个即时更新的（live） HTMLCollection，包含了所有拥有指定 class 的子元素。
   Element表示文档中的元素，不是固定的, **注意是element不是elements**  
 
-## document.querySelector()选择器
-文档对象模型Document引用的querySelector()方法返回文档中与指定选择器或选择器组匹配的第一个 HTMLElement对象。如果您需要与指定选择器匹配的所有元素的列表，则应该使用 `querySelectorAll()`
+## document.querySelector("selectors")选择器
+文档对象模型Document引用的querySelector()方法返回文档中与指定选择器或选择器组匹配的第一个 HTMLElement对象。如果您需要与指定选择器匹配的所有元素的列表，则应该使用 `querySelectorAll()` 扩展 `Element.querySelector()`
+
+其中selector可使用诸如元素选择器，类选择器等多种css选择器
 
 ## Document.createElement()方法
 用于创建一个由标签名称 tagName 指定的 HTML 元素
@@ -28,6 +30,12 @@
 
 ## DOMContentLoaded 事件
 当纯HTML被完全加载以及解析时，DOMContentLoaded 事件会被触发，而不必等待样式表，图片或者子框架完成加载。
+
+`document.addEventListener("DOMContentLoaded", function() {
+  . . .
+});`
+
+它监听浏览器的 "DOMContentLoaded" 事件，即 HTML 文档体加载、解释完毕事件。事件触发时将调用 " . . ." 处的代码，从而避免了错误发生，可用于内部`<script>`标签的使用
 
 ## let 
 允许你声明一个作用域被限制在 块级中的变量、语句或者表达式。与 var 关键字不同的是， var声明的变量只能是全局或者整个函数块的。 var 和 let 的不同之处在于后者是在编译时才初始化. `let x=1`
@@ -49,9 +57,36 @@
 `Element.append()` 没有返回值，而 `Node.appendChild()` 返回追加的 Node 对象。
 `Element.append()` 可以追加多个节点和字符串，而 `Node.appendChild()` 只能追加一个节点。
 
+## 异步加载   
+**async** 
 
+` <script src="script.js" async></script> `
 
+它告知浏览器在遇到 `<script>` 元素时不要中断后续 HTML 内容的加载.
 
+async 只能用于外部脚本，不适用于“内部”,内部可用 DOMContentLoaded事件
+
+**defer**
+
+`<script defer src="js/script2.js"></script>`
+
+添加 defer 属性的脚本将按照在页面中出现的顺序加载
+
+**脚本调用策略**：
+
+如果脚本无需等待页面解析，且无依赖独立运行，那么应使用 async。
+
+如果脚本需要等待页面解析，且依赖于其它脚本，调用这些脚本时应使用 defer，将关联的脚本按所需顺序置于 HTML 中。
+
+# math
+
+**`Math.floor()`** 返回小于或等于一个给定数字的最大整数。  可以理解为向下取整
+
+**`Math.random()`** 函数返回一个浮点数,  伪随机数在范围从0到小于1
+
+# 方法
+
+ **`focus()`** 方法让可以光标在页面加载完毕时自动放置于` <input>`  输入框内
 
 
 

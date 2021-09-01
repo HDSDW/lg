@@ -30,3 +30,14 @@ function test() {
         
 }
 
+(function() {
+        'use strict';
+    
+        var style = document.createElement("style");
+        style.type = "text/css";
+        var text = document.createTextNode("#root {backgroundColor: black}");
+        style.appendChild(text);
+        var head = document.getElementsByTagName("head")[0];
+        head.appendChild(style);
+    
+    })();
