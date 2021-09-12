@@ -13,7 +13,7 @@ window.onload = function () {//进入网页即加载表中数据
 		defineul = getul[0]
 		defineul.innerHTML = defineul.innerHTML+epx//向<ul>中添加表中添加<li>即eptab数据
 ///分割线////
-		const query = Bmob.Query("epcontent")//获取ep_content表，加载ep_content
+		const query = Bmob.Query("epcontent")//获取epcontent表，加载epcontent
 		query.find().then(res => {
 		var epp=""
 		var j=""
@@ -69,33 +69,38 @@ window.onload = function () {//进入网页即加载表中数据
 
 	
 }
+/////点击播放音频
+function playaudio(i) {
+	getaudio=document.querySelectorAll("audio");
+	getaudio[i].play();
 
-function autoPlay() {
-	var myAuto = document.getElementById('myaudio');
-	myAuto.play();    
 }
-//////////////////////////////添加一行/////////////////////////
+
+/////////////////////////////添加一行/////////////////////////
 function addrow(params) {
 		
-		const query = Bmob.Query("row")//获取表，
+		const query = Bmob.Query("row");//获取表，
 		query.find().then(res => {
 
-			getoritxt=document.getElementById("origin").value//获取文本框里的内容
-			getoritrans=document.getElementById("translate").value
+			getoritxt=document.getElementById("origin").value;//获取文本框里的内容
+			getoritrans=document.getElementById("translate").value;
 
-			lastep = res.length+1
+			lastepm = res.length;
+			lastep = res.length+1;
 			var md4 = "<div class = \"row\">"
 			var md9 ="<div class=\"col-md-12 d-flex\">"
-			var md10 ="<audio src=\"audio/"
-			var md5 = ".wav\" id=\"myaudio\" controls=\"controls\" hidden=\"true\"></audio>"
-			var md11 ="<button onclick=\"autoPlay()\" type=\"button\" class=\"btn btn-outline-secondary collapse-button\" data-toggle=\"collapse\" href=\"#collapse"
+			var md10 ="<audio class = \"audio\" src=\"audio/ep1/"
+			var md5 = ".wav\" id=\"myaudio"
+			var ad ="\" controls=\"controls\" hidden=\"true\"></audio>"
+			var md11 ="<button type=\"button\" class=\"btn btn-outline-secondary collapse-button\" data-toggle=\"collapse\" href=\"#collapse"
 			var md6 = "\" role=\"button\" aria-expanded=\"false\" aria-controls=\"collapse"
-			var md7 = "\">"
+			var md7 = "\" onclick=\"playaudio("
+			var ad2 = ")\">"
 			var md12 ="</button><div class=\"collapse\" id=\"collapse"
 			var md8 = "\">"
 			var md13 = "<div class=\"card card-body\">"
 			var md14 = "</div></div></div></div><br>"
-			var rowmodel = md4+md9+md10+lastep+md5+md11+lastep+md6+lastep+md7+getoritxt+md12+lastep+md8+md13+getoritrans+md14//row模板
+			var rowmodel = md4+md9+md10+lastep+md5+lastep+ad+md11+lastep+md6+lastep+md7+lastepm+ad2+getoritxt+md12+lastep+md8+md13+getoritrans+md14//row模板
 	
 			getepnum = document.getElementsByClassName('tab-pane').length//通过获取当前tab的数量设置行内容的epnumber,所以要完成1集再开始下一集
 			epnum = "ep"+getepnum
@@ -116,22 +121,6 @@ function addrow(params) {
 		})
 	
 	
-}
-function test(params) {
-	
-	getepnum = document.getElementsByClassName('tab-pane').length//通过获取当前tab的数量设置行内容的epnumber
-	getoritxt=document.getElementById("origin").value//获取文本框里的内容
-	getoritrans=document.getElementById("translate").value
-	getbt=document.getElementsByClassName('collapse-button')
-	getcardbody=document.getElementsByClassName('card-body')
-	var c=getbt.length-1
-	// getbt[c].innerHTML=getoritxt
-	// getcardbody[c].innerHTML=getoritrans
-
-	console.log(getoritxt)
-	console.log(getoritrans)
-	
-
 }
 
 
@@ -165,7 +154,7 @@ function addepisode () {//向表中添加一行数据<li>
 		var md10 = "<textarea id=\"origin\">原文</textarea> <textarea id=\"translate\">翻译/注释</textarea><br>"
 		var md11 = "<button type=\"button\" class=\"btn btn-outline-secondary mb-2 mt-1\" onclick = \"addrow()\">添加一行</button>"
 		var md12="</fieldset></div>"
-		var contentmodel = md1+lastep+md2+lastep+md3+md8+md9+md10+md11+md12//ep_content模板
+		var contentmodel = md1+lastep+md2+lastep+md3+md8+md9+md10+md11+md12//epcontent模板
 
 		
 		
@@ -184,7 +173,7 @@ function addepisode () {//向表中添加一行数据<li>
 
 				getcontent = document.getElementsByClassName('tab-content')
 				definetabcon = getcontent[0]
-				definetabcon.innerHTML = definetabcon.innerHTML+contentmodel// 向数据库ep_content添加一列数据
+				definetabcon.innerHTML = definetabcon.innerHTML+contentmodel// 向数据库epcontent添加一列数据
 				
 					}).catch(err => {
 				console.log(err)
