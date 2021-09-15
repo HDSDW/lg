@@ -291,6 +291,9 @@ input[type="checkbox"] {
 
 textarea {
   overflow: auto;
+  background-color: #343a40;
+  color: white;
+
   /* resize: vertical; */
 }
 
@@ -2880,7 +2883,7 @@ fieldset:disabled a.btn {
 }
 
 .btn-outline-secondary {
-  color: #6c757d;
+  color: #ffffff;
   border-color: #6c757d;
 }
 
@@ -4756,9 +4759,9 @@ input[type="button"].btn-block {
   flex-direction: column;
   min-width: 0;
   word-wrap: break-word;
-  background-color: #fff;
+  background-color: #343a40;
   background-clip: border-box;
-  border: 1px solid rgba(0, 0, 0, 0.125);
+  border: 2px solid rgba(255, 255, 255, 0.125);
   border-radius: 0.25rem;
 }
 
