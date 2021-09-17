@@ -11,74 +11,24 @@
     <script defer src="Bmob-2.2.5.min.js"></script>
     <script defer src="test.js"></script>
 
-    <script language="javascript" type="text/javascript">
-
-            document.addEventListener("DOMContentLoaded", function() {
-
-                var btn = document.querySelector('button');
-                btn.addEventListener("click",function () {
-
-                var media = document.querySelector('audio');
-                media.play();    
-                })//点击播放
-
-                const input = document.querySelector('input');//点击上传
-                input.style.opacity = 0;
-
-                input.onchange = () => {
-				const pic = input.files
-				let file
-				for(let item of pic){
-					file = Bmob.File(item.name, item);
-				}
-				file.save().then(res => {
-					console.log(res.length);
-					console.log(res);
-                    JSON.parse(res);
-                    // const query = Bmob.Query("audio")//上传音频到数据库
-                    // const file = res;
-                    // query.set('audio',file[0])
-                    // query.save().then(res => {
-                    // console.log(res)
-                    // })
-				})
-				}
-                var btn2 = document.querySelector('#btn')
-                // const ab = '{cdn: "upyun", filename: "0e24ccb1d5f8ad62.wav", url: "http://bmob-cdn-30002.b0.upaiyun.com/2021/09/08/ddab3d5e40d19532807852e48f8aefb3.wav"}';
-                
-                btn2.addEventListener('click', function() {
-
-                    const query = Bmob.Query("audio")
-                    query.get('1dde7f60c4').then(res => {
-                    a =res.audio;
-                    console.log(a.url);
-                    }).catch(err => {
-                    console.log(err)
-                    })
-
-                })
-            })
-        
-        
-    </script>
     <title>测试</title>
     </head>
     <body>
-        <label for="audio_uploads" class="btn btn-outline-secondary mb-2 mt-1">选择音频文件上传</label>
-        <input type="file" id="audio_uploads" name="audio_uploads" accept="audio/*">
-    
-        <button class="btn btn-outline-secondary mb-2 mt-1">ccc</button>
-        <audio src=""></audio>
-        <button class="btn btn-outline-secondary mb-2 mt-1" id = "btn">测试</button>
 
         <div class = "row">
-            <div class="col-md-12 d-flex">
-                <audio src="audio/ep1/2.wav" id="myaudio2" controls="controls" hidden="true"></audio>
-                <button onclick="autoPlay()" id ="btn2"type="button" class="btn btn-outline-secondary collapse-button" 
-                data-toggle="collapse" href="#collapse2" role="button" aria-expanded="false" aria-controls="collapse2">
-                いろいろ やる気が出なくて
+            <div class="col-md-12">
+                <audio src="audio/ep1/1.wav" id="myaudio" controls="controls" hidden="true"></audio>
+                <button type="button" onclick="playaudio(0)" class="btn btn-outline-secondary collapse-button" 
+                        data-toggle="collapse" href="#collapse1" role="button" aria-expanded="false" aria-controls="collapse1">
+                        1.どうしたの？ ゆっこ
                 </button>
-                <div class="collapse" id="collapse2"
-                ><div class="card card-body">真是各种没干劲啊。いろいろ：色色，方方面面，各种各样。 やる気（ki）：干劲。 出（de）：出来。 </div></div></div></div><br>
+                <div class="collapse" id="collapse1">
+                    <div class="card card-body">
+                        怎么了  祐子
+                    </div>
+                </div>
+            </div>
+        </div>
+        <br>    
     </body>
     </html>

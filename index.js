@@ -89,7 +89,7 @@ function addrow(params) {
 			getoritrans=document.getElementById("translate").value;
 
 			var md4 = "<div class = \"row\">"
-			var md9 ="<div class=\"col-md-12 d-flex\">"
+			var md9 ="<div class=\"col-md-12\">"
 			var md10 ="<audio class = \"audio\" src=\"audio/ep1/"
 			var md5 = ".wav\" id=\"myaudio"
 			var ad ="\" controls=\"controls\" hidden=\"true\"></audio>"
