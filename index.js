@@ -110,7 +110,7 @@ function addrow(params) {
 
 			query.set("row_code", rowmodel)
 			query.set("epnum", getepnum)
-			query.set("row_number", lastrow)
+			query.set("rown_umber", lastrow)
 
 			query.save().then(res => {
 
