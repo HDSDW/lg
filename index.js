@@ -82,11 +82,12 @@ function addrow(params) {
 		const query = Bmob.Query("row");//获取表，
 		query.find().then(res => {
 
-			getoritxt=document.getElementById("origin").value;//获取文本框里的内容
-			getoritrans=document.getElementById("translate").value;
-
 			lastepm = res.length;
 			lastep = res.length+1;
+			getoritxt=document.getElementById("origin").value;//获取文本框里的内容
+			rownumber = lastep + ".";
+			getoritrans=document.getElementById("translate").value;
+
 			var md4 = "<div class = \"row\">"
 			var md9 ="<div class=\"col-md-12 d-flex\">"
 			var md10 ="<audio class = \"audio\" src=\"audio/ep1/"
@@ -100,7 +101,7 @@ function addrow(params) {
 			var md8 = "\">"
 			var md13 = "<div class=\"card card-body\">"
 			var md14 = "</div></div></div></div><br>"
-			var rowmodel = md4+md9+md10+lastep+md5+lastep+ad+md11+lastep+md6+lastep+md7+lastepm+ad2+getoritxt+md12+lastep+md8+md13+getoritrans+md14//row模板
+			var rowmodel = md4+md9+md10+lastep+md5+lastep+ad+md11+lastep+md6+lastep+md7+lastepm+ad2+rownumber+getoritxt+md12+lastep+md8+md13+getoritrans+md14//row模板
 	
 			getepnum = document.getElementsByClassName('tab-pane').length//通过获取当前tab的数量设置行内容的epnumber,所以要完成1集再开始下一集
 			epnum = "ep"+getepnum
