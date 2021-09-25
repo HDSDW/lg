@@ -2,25 +2,6 @@ hr {
     border-top: 2px solid ;
 }
 
-.shangbianju {
-    margin-top:1em;
+footer {
+  height: 10em;
 }
-
-/* label {
-    
-      padding: 5px 10px;
-      border-radius: 0.25rem;
-      border: 1px ridge black;
-      font-size: 0.8rem;
-      height: auto;
-}
-
-label:hover{
-    background-color: #696b6e;
-    color: white;
-  }
-
-label:active {
-    background-color: #696b6e;
-    color: white;
-  } */
