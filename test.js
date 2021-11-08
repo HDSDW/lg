@@ -1,10 +1,12 @@
-Bmob.initialize("0e24ccb1d5f8ad62", "123456");
+mob.initialize("0e24ccb1d5f8ad62", "123456");
 
-window.onload = function () {
+window.onload = function() {
 
 };
 
-function signup() {
+function sign() {
+
+    idvalue = document.querySelector("#inputid").value;
 
     let params = {
         username: 'bmob2018',
@@ -13,13 +15,12 @@ function signup() {
         phone: '13711166567',
     };
     Bmob.User.register(params).then(res => {
-      console.log(res)
+        console.log(res)
     }).catch(err => {
-     console.log(err)
+        console.log(err)
     });
 
 };
-btns=document.querySelector("#signup");
-btns.addEventListener("click", signup);
+btns = document.querySelector("#sign");
+btns.addEventListener("click", sign);
 console.log(btns);
-
