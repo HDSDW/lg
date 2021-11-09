@@ -35,38 +35,13 @@ window.onload = function () {//进入网页即加载表中数据
 			getrow = document.getElementsByClassName('tab-pane')
 			definerow = getrow[0]
 			definerow.innerHTML = rowcon+definerow.innerHTML
-			// console.log(res)
-
-			////分割线///
-		// const query = Bmob.Query("txt")//获取第一集每行原文内容
-		// query.find().then(res => {
-
-		// getbt=document.getElementsByClassName('collapse-button')//获取collapse-button和card-body集合
-		// getcardbody=document.getElementsByClassName('card-body')
-		// getepnum = document.getElementsByClassName('tab-pane').length//通过获取当前tab的数量设置行内容的epnumber即当前集数
-		
-		// //1
-		// getbt[0].innerHTML=res[0].oritext
-		// getcardbody[0].innerHTML=res[0].translation
-		// console.log(getbt[0])
-		
-		// //2
-		// getbt[1].innerHTML=res[1].oritext
-		// getcardbody[1].innerHTML=res[1].translation
-
-		// console.log(getbt[1])
-
-		
-
-		// })
-
 
 		})
 
 
 		})
 	})
-
+	/////////分割线////////////////////////////////
 	
 }
 /////点击播放音频
@@ -75,6 +50,31 @@ function playaudio(i) {
 	getaudio[i].play();
 
 }
+		    btns = document.querySelector("#sign");
+			btnl = document.querySelector("#log");
+			btno = document.querySelector("#logout");
+			btnlg = document.querySelector('#logorsign');
+			btnact = document.querySelector('#account');
+			btnaddep = document.querySelector('#addep');
+			fieldset = document.querySelector('.fieldset');
+
+			btns.addEventListener("click", sign);
+			btnl.addEventListener("click", log);
+			btno.addEventListener("click", logout);
+
+			console.log(fieldset);
+			
+			let current = Bmob.User.current();//获取登录信息，判断是否登录
+			if (current==null) {
+				btnact.style.display = "none";
+				btnaddep.style.display = "none";
+				btno.style.display = "none";
+				fieldset.style.display = "none";
+			} else {
+
+				btnlg.style.display = "none";
+			}
+
 
 /////////////////////////////添加一行/////////////////////////
 function addrow(params) {
@@ -151,7 +151,7 @@ function addepisode () {//向表中添加一行数据<li>
 		var md1 = "<div class=\"tab-pane fade\" id=\"ep"
 		var md2 = "\" role=\"tabpanel\" aria-labelledby=\"eptab"
 		var md3 = "\">"
-		var md8 = "<fieldset>"
+		var md8 = "<fieldset class=\"fieldset\">"
 		var md9 = "<legend>添加内容</legend>"
 		var md10 = "<textarea id=\"origin\">原文</textarea> <textarea id=\"translate\">翻译/注释</textarea><br>"
 		var md11 = "<button type=\"button\" class=\"btn btn-outline-secondary mb-2 mt-1\" onclick = \"addrow()\">添加一行</button>"
