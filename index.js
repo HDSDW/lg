@@ -256,7 +256,9 @@ function addepisode () {//向表中添加一行数据<li>
 				console.log(res);
 				alert("注册成功，点击登录即可")
 			}).catch(err => {
-				console.log(err)
+				console.log(err);
+				alert(err.error);
+
 			});
 
 		};
