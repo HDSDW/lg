@@ -12,7 +12,7 @@ window.onload = function () {//进入网页即加载表中数据
 		getul = document.getElementsByTagName("ul")//定位<ul>元素位置
 		defineul = getul[0]
 		defineul.innerHTML = defineul.innerHTML+epx//向<ul>中添加表中添加<li>即eptab数据
-///分割线////
+///分割线////////////////////////////////////
 		const query = Bmob.Query("epcontent")//获取epcontent表，加载epcontent
 		query.find().then(res => {
 		var epp=""
@@ -23,18 +23,44 @@ window.onload = function () {//进入网页即加载表中数据
 		getcontent = document.getElementsByClassName('tab-content')//定位tab-content类位置
 		definetabcon = getcontent[0]
 		definetabcon.innerHTML = definetabcon.innerHTML+epp//向tab-content类中添加tabpane数据
-/////////分割线////////////////////////////////
+//////////////////分割线////////////////////////////////
+		btns = document.querySelector("#sign");
+		btnl = document.querySelector("#log");
+		btno = document.querySelector("#logout");
+		btnlg = document.querySelector('#logorsign');
+		btnact = document.querySelector('#account');
+		btnaddep = document.querySelector('#addep');
+		fieldset = document.querySelector('#field');
+
+		btns.addEventListener("click", sign);
+		btnl.addEventListener("click", log);
+		btno.addEventListener("click", logout);
+
+		let current = Bmob.User.current();//获取登录信息，判断是否登录来决定是否显示特定内容
+		if (current==null) {
+
+			btnact.style.display = "none";
+			btnaddep.style.display = "none";
+			btno.style.display = "none";
+			fieldset.style.display = "none";
+		} else {
+
+			btnlg.style.display = "none";
+		}
+
+//////////////////分割线////////////////////////////////
 		const query = Bmob.Query("row")//获取row表，加载row
 		query.find().then(res => {
 
-			var rowcon=""
-			var k
+			var rowcon="";
+			var k;
 			for (k= 0; k < res.length; k++) {
-				rowcon = rowcon+res[k].row_code
+				
+				rowcon = rowcon+res[k].row_code;
 			}
-			getrow = document.getElementsByClassName('tab-pane')
-			definerow = getrow[0]
-			definerow.innerHTML = rowcon+definerow.innerHTML
+			getrow = document.getElementsByClassName('tab-pane');
+			definerow = getrow[0];
+			definerow.innerHTML = rowcon+definerow.innerHTML;
 
 		})
 
@@ -50,31 +76,6 @@ function playaudio(i) {
 	getaudio[i].play();
 
 }
-		    btns = document.querySelector("#sign");
-			btnl = document.querySelector("#log");
-			btno = document.querySelector("#logout");
-			btnlg = document.querySelector('#logorsign');
-			btnact = document.querySelector('#account');
-			btnaddep = document.querySelector('#addep');
-			fieldset = document.querySelector('.fieldset');
-
-			btns.addEventListener("click", sign);
-			btnl.addEventListener("click", log);
-			btno.addEventListener("click", logout);
-
-			console.log(fieldset);
-			
-			let current = Bmob.User.current();//获取登录信息，判断是否登录
-			if (current==null) {
-				btnact.style.display = "none";
-				btnaddep.style.display = "none";
-				btno.style.display = "none";
-				fieldset.style.display = "none";
-			} else {
-
-				btnlg.style.display = "none";
-			}
-
 
 /////////////////////////////添加一行/////////////////////////
 function addrow(params) {
@@ -240,5 +241,42 @@ function addepisode () {//向表中添加一行数据<li>
 			  }  
 			  return chnStr;  
 		}  
-		// alert(NumberToChinese(123));
 
+		function sign() {//注册
+
+			namevalue = document.querySelector("#name").value;
+			passvalue = document.querySelector("#password").value;
+
+
+			let params = {
+				username: namevalue,
+				password: passvalue,
+			};
+			Bmob.User.register(params).then(res => {
+				console.log(res);
+				alert("注册成功，点击登录即可")
+			}).catch(err => {
+				console.log(err)
+			});
+
+		};
+
+		function log(params) {//登录
+			
+			namevalue = document.querySelector("#name").value;
+			passvalue = document.querySelector("#password").value;
+
+			Bmob.User.login(namevalue,passvalue).then(res => {
+				console.log(res)
+				window.location.reload(true);
+			}).catch(err => {
+				console.log(err)
+			});
+
+		}
+
+		function logout(){//退出登录
+			
+			Bmob.User.logout();
+			window.location.reload(true);
+		};
